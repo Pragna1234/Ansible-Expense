@@ -17,7 +17,7 @@
         enabled: yes
 
     - name: Check if root password is already set
-      ansible.builtin.shell: "mysql -e 'SELECT User, Host FROM mysql.user WHERE User=\"root\" AND Password=\"Y\";'"
+      ansible.builtin.shell: "mysqladmin --user=root --password='' version"
       register: mysql_root_password
       ignore_errors: yes
 
