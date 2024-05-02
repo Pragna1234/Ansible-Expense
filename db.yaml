@@ -18,4 +18,9 @@
        login_user: root
        login_password: ExpenseApp@1
        filter: version
-
+      ignore_errors: yes
+      register: mysql_connection_output
+  
+  - name: printing mysql output
+    ansible.builtin.debug:
+      msg: "mysql connection output is: {{mysql_connection_output}}"
