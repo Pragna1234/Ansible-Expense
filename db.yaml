@@ -2,28 +2,29 @@
   hosts: db
   become: yes
   vars:
-   login_host: "pragnadevops.online"
-  tasks: 
-   - name: Install MYSQL Server
-     ansible.builtin.dnf:
-      name: mysql-server
-      state: latest
-   - name: Start and enable MYSQL service
-     ansible.builtin.service:
-       name: mysqld
-       state: started 
-       enabled: yes
-  #check password is already set up or not
-  
-   - name: DB connection
-     community.mysql.mysql_info:
-       login_user: root
-       login_password: ExpenseApp@1
-       login_host: "{{login_host}}"
-       filter: version
-     ignore_errors: yes
-     register: mysql_connection_output
-  
-    - name: printing MySQL output
+    login_host: "pragnadevops.online"
+  tasks:
+    - name: Install MYSQL Server
+      ansible.builtin.dnf:
+        name: mysql-server
+        state: latest
+
+    - name: Start and enable MYSQL service
+      ansible.builtin.service:
+        name: mysqld
+        state: started
+        enabled: yes
+
+    # Check if password is already set up or not
+    - name: DB connection
+      community.mysql.mysql_info:
+        login_user: root
+        login_password: ExpenseApp@1
+        login_host: "{{ login_host }}"
+        filter: version
+      ignore_errors: yes
+      register: mysql_connection_output
+
+    - name: Printing MySQL output
       ansible.builtin.debug:
-        msg: "MySQL connection output is: {{mysql_connection_output}}"
+        msg: "MySQL connection output is: {{ mysql_connection_output }}"
