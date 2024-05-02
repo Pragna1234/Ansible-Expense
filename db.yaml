@@ -13,9 +13,9 @@
        enabled: yes
   #check password is already set up or not
   
-- name: check root password is exist or not
-  community.mysql.mysql_info:
-    login_user: root
-    login_password: ExpenseApp@1
-    filter: version
-    
+   - name: check root password is exist or not
+     community.mysql.mysql_info:
+       login_user: root
+       login_password: ExpenseApp@1
+       filter: version
+
