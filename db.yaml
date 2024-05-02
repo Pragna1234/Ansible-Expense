@@ -19,11 +19,11 @@
      community.mysql.mysql_info:
        login_user: root
        login_password: ExpenseApp@
-       login_host:"{{login_host}}"
+       login_host: "{{login_host}}"
        filter: version
-      ignore_errors: yes
-      register: mysql_connection_output
+     ignore_errors: yes
+     register: mysql_connection_output
   
-    - name: printing mysql output
+    - name: printing MySQL output
       ansible.builtin.debug:
-        msg: "mysql connection output is: {{mysql_connection_output}}"
+        msg: "MySQL connection output is: {{mysql_connection_output}}"
