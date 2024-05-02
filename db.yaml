@@ -1,6 +1,8 @@
 - name: Configure DB server
   hosts: db
   become: yes
+  vars:
+   login_host: pragnadevops.online
   tasks: 
    - name: Install MYSQL Server
      ansible.builtin.dnf:
@@ -13,10 +15,11 @@
        enabled: yes
   #check password is already set up or not
   
-   - name: check root password is exist or not
+   - name: DB connection
      community.mysql.mysql_info:
        login_user: root
-       login_password: ExpenseApp@1
+       login_password: ExpenseApp@
+       login_host:"{{login_host}}"
        filter: version
       ignore_errors: yes
       register: mysql_connection_output
