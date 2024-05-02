@@ -6,9 +6,9 @@
      ansible.builtin.dnf:
       name: mysql-server
       state: latest
-   - name: Start and enable service
+   - name: Start and enable MYSQL service
      ansible.builtin.service:
-       name: mysql
+       name: mysqld
        state: started 
        enabled: yes
   #check password is already set up or not
