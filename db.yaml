@@ -3,6 +3,10 @@
   become: yes
   vars:
     login_host: "pragnadevops.online"
+  vars_prompt:
+  - name: mysql_root_password
+    prompt: please enter password
+    private: no 
   tasks:
     - name: Install MYSQL Server
       ansible.builtin.dnf:
@@ -14,19 +18,20 @@
         name: mysqld
         state: started
         enabled: yes
-    - name: Install dependency python packages.
+    
+    - name: Install dependency python packages. #installing dependencies from the error message we  see while connecting DB connection 
       ansible.builtin.pip:
         name: 
         - PYMYSQL
         - cryptography #to use password
-        executable: pip3.9  # we use pip3.11 if the phyton is using 3.11 version ,we can check by using ansible --version
-
+        executable: pip3.9  #we use pip3.11 if the phyton is using 3.11 version ,we can check by using ansible --version
+                            #after running this file now ,we see error saying to set up user,for that we run the command and use command module.
 
     # Check if password is already set up or not
     - name: DB connection
       community.mysql.mysql_info:
         login_user: root
-        login_password: ExpenseApp@1
+        login_password: "{{mysql_root_password}}"
         login_host: "{{ login_host }}"
         filter: version
       ignore_errors: yes
@@ -35,3 +40,7 @@
     - name: Printing MySQL output
       ansible.builtin.debug:
         msg: "MySQL connection output is: {{ mysql_connection_output }}"
+      
+    - name: setting up root password 
+      ansible.builtin.command: "mysql_secure_installation --set-root-pass {{mysql_root_password}}"  #we using here prompt for password security.
+      when: mysql_connection_output.failed is True
