@@ -25,3 +25,29 @@
       ansible.builtin.shell: |
         mysqladmin -u root password "{{ mysql_root_password }}"
       when: mysql_root_password.rc != 0
+
+
+
+
+        
+    - name: Install dependency python packages. #installing dependencies from the error message we  see while connecting DB connection 
+      ansible.builtin.pip:
+        name: 
+        - PYMYSQL
+        - cryptography #to use password
+        executable: pip3.9  #we use pip3.11 if the phyton is using 3.11 version ,we can check by using ansible --version
+                            #after running this file now ,we see error saying to set up user,for that we run the command and use command module.
+
+    # Check if password is already set up or not
+    - name: DB connection
+      community.mysql.mysql_info:
+        login_user: root
+        login_password: "{{mysql_root_password}}"
+        login_host: "{{ login_host }}"
+        filter: version
+      ignore_errors: yes
+      register: mysql_connection_output
+
+    - name: Printing MySQL output
+      ansible.builtin.debug:
+        msg: "MySQL connection output is: {{ mysql_connection_output }}" 
