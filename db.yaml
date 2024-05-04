@@ -19,7 +19,7 @@
         state: started
         enabled: yes
 
-     - name: Install dependency python packages. #installing dependencies from the error message we  see while connecting DB connection 
+    - name: Install dependency python packages. #installing dependencies from the error message we  see while connecting DB connection 
       ansible.builtin.pip:
         name: 
         - PYMYSQL
