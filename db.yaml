@@ -19,12 +19,12 @@
         state: started
         enabled: yes
 
-    - name: Install dependency python packages
+    - name: Install dependency python packages #installing dependencies from the error message we  see while connecting DB connection 
       ansible.builtin.pip:
         name: 
           - PYMYSQL
-          - cryptography
-        executable: pip3.9
+          - cryptography  #to use passsword on commandline
+        executable: pip3.9 #if phyton version is 3.9 should use pip3.9
 
     # Check if password is already set up or not
     - name: DB connection
