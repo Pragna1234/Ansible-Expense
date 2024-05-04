@@ -1,2 +1,5 @@
 [db]
-pragnadevops.online
+db.pragnadevops.online
+
+[backend]
+backend.pragnadevops.online
