@@ -8,13 +8,17 @@
     ansible.builtin.command: dnf module disable nodejs -y
 
   - name: enable nodejs:20
-    ansible.builtin.command: dnf module enable nodejs:20 -y
+    ansible.builtin.command: dnf module enable nodejs:20 -y  #works for all distributions hetrogenious
 
   - name: Install nodejs
-    ansible.builtin.dnf:
+    ansible.builtin.dnf: #only works for redhat family homogenious
      name: nodejs
      state: installed
 
-  - name: Add Expense-application user
+  - name: create Expense-application user
     ansible.builtin.user:
       name: Expense
+  - name: Create App Directory
+    ansible.builtin.file:
+    path: /app
+    state: directory #it creates directory otherwise it simply creates file
