@@ -15,8 +15,11 @@
 
   - name: Install nodejs
     ansible.builtin.dnf: #only works for redhat family homogenious
-     name: nodejs
+     name: "{{item}}"
      state: installed
+    loop:
+     - nodejs
+     - mysql
 
   - name: create Expense-application user
     ansible.builtin.user:
