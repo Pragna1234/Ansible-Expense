@@ -21,5 +21,18 @@
     ansible.builtin.file:
       path: /usr/share/nginx/html/
       state: directory
+  
+  - name: Download frontend code
+      ansible.builtin.get_url:
+        url: https://expense-builds.s3.us-east-1.amazonaws.com/expense-frontend-v2.zip
+        dest: /tmp/frontend.zip
+
+  - name: Unzip frontend application code
+      ansible.builtin.unarchive:
+        src: /tmp/frontend.zip #by default checks in ansible server(telling ansible not to check in ansible server check in remote server)
+        dest: /usr/share/nginx/html
+        remote_src: yes      
+
+  
     
   
