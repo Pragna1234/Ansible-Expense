@@ -5,4 +5,4 @@ db.pragnadevops.online
 backend.pragnadevops.online
 
 [frontend]
-frontend.pragnadevops.online
+pragnadevops.online
