@@ -39,8 +39,8 @@
         path: /etc/nginx/default.d/
         state: directory
 
-   - name: Copy backend conf
-     ansible.builtin.copy:
+    - name: Copy backend conf
+      ansible.builtin.copy:
         src: expense.conf
         dest: /etc/nginx/default.d/expense.conf
         mode: 0644  # Ensure correct permissions
