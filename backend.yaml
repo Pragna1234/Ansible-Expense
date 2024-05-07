@@ -3,7 +3,7 @@
   hosts: backend
   vars:
     login_host: db.pragnadevops.online
-    login_password: ExpenseApp@1
+    login_password: Expense321
   tasks:
     - name: disable default nodejs
       ansible.builtin.command: dnf module disable nodejs -y
