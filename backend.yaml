@@ -34,3 +34,17 @@
      src: /tmp/backend.zip #by default checks in ansible server(telling ansible not to check in ansible server check in remote server)
      dest: /app
      remote_src: yes
+
+  - name: Install npm dependencies
+    ansible.builtin.command: npm install
+    args: 
+      chdir: /app
+  - name: Copy backend service
+    ansible.builtin.copy:
+     src: backend.service
+     dest: /etc/systemd/system/backend.service
+     
+      
+          
+  
+  
