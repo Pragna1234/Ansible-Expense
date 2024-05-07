@@ -10,8 +10,8 @@
      state: latest
   - name: start and enable nginx
    ansible.builtin.service:
-    name: nginx
-    state: start
-    enabled: yes
+     name: nginx
+     state: start
+     enabled: yes
 
 
