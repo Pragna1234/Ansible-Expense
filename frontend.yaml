@@ -1,8 +1,6 @@
 - name: configure frontend server
   become: yes
   hosts: frontend
-  vars:
-
   tasks:
   - name: install nginx
     ansible.builtin.dnf:
@@ -11,7 +9,7 @@
   - name: start and enable nginx
     ansible.builtin.service:
       name: nginx
-      state: start
+      state: started
       enabled: yes
 
 
