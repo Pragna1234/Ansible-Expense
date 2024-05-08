@@ -21,7 +21,7 @@
 
     - name: create Expense-application user
       ansible.builtin.user:
-        name: Expense
+        name: expense
 
     - name: Create App Directory
       ansible.builtin.file:
